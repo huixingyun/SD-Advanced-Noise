@@ -3,8 +3,12 @@
 #
 import json
 import torch
+import os
 
-def linear_encoder(img, ver="v1", weights="./linear_weights.json"):
+current_file_path = os.path.abspath(__file__)
+current_directory = os.path.dirname(current_file_path)
+
+def linear_encoder(img, ver="v1", weights=os.path.join(current_directory, "linear_weights.json")):
 	"""Encodes tensor RGB[3,W,H](0.0-1.0) into tensor LATENT[4,W,H]"""
 	with open(weights) as f:
 		w = json.load(f)
